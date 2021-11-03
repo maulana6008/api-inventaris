@@ -94,5 +94,24 @@ Peminjam.removeBydId = (id, result) => {
     })
 }
 
+Peminjam.peminjamByType = (type, result) => {
+    dbConfig.query(`SELECT * FROM peminjam WHERE type= ?`,[type], (err, res) => {
+        if(err){
+            result(err,null)
+            return
+        }
+        result(null, res)
+    })
+}
+
+Peminjam.peminjamSelectOne = (id,type, result) => {
+    dbConfig.query("SELECT * FROM peminjam WHERE id = ? and type = ?", [id, type], (err, res) => {
+        if(err){
+            result(err, null)
+        }
+        result(null, res)
+    })
+}
+
 
 module.exports = Peminjam;
