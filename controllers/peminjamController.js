@@ -125,3 +125,34 @@ exports.delete = (req, res) => {
         else res.json({message:'Data berhasil di hapus'})
     })
 }
+
+
+exports.typeSelect = (req, res) => {
+
+    let type = req.params.type;
+    Peminjam.peminjamByType(type, (err,data) => {
+        if(err){
+            res.send({
+                message:err
+            })
+        }
+        res.json(data)
+    })
+
+}
+
+exports.typeSelectOne = (req, res) => {
+
+    let type = req.params.type
+    let id = req.params.peminjamId
+
+    Peminjam.peminjamSelectOne(id, type, (err, data) => {
+        if(err){
+            res.send({
+                message:err
+            })
+        }
+        res.json(data)
+    })
+
+}
