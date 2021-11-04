@@ -15,6 +15,9 @@ module.exports = app => {
     
     app.delete('/peminjam/:peminjamId', Peminjam.delete)
     
+    app.get('/peminjam/type/:type', Peminjam.typeSelect)
+    app.get('/peminjam/type/:type/:peminjamId', Peminjam.typeSelectOne)
+    
     app.use('/kembali', Auth.isAuthenticated)
     app.get('/kembali/:peminjamId', Peminjam.kembali)
     
