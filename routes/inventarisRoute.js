@@ -15,6 +15,8 @@ module.exports = app => {
     app.put("/inventaris/:inventarisId", Inventaris.update)
 
     app.delete("/inventaris/:inventarisId", Inventaris.delete)
+
+    app.get("/inventaris/kode", Inventaris.invenKode)
     
   };
   

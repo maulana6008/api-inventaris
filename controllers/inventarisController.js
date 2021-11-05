@@ -97,9 +97,9 @@ exports.delete = (req, res) => {
 
 }
 
-exports.invenType = (req, res) => {
-    let type = req.params.type
-    Inventaris.selectType(type, (err,data) => {
+exports.invenKode = (req, res) => {
+    let kode = req.params.kode
+    Inventaris.selectKode(kode, (err,data) => {
         if(err)
             res.send({
                 message:err

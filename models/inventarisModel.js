@@ -85,8 +85,8 @@ Inventaris.removeById = (id,result) => {
   })
 }
 
-Inventaris.selectType = (type, result) => {
-  dbConfig.query('SELECT * FROM inventaris WHERE type = ?', [type], (err, res) => {
+Inventaris.selectKode = (kode, result) => {
+  dbConfig.query('SELECT * FROM inventaris WHERE kode = ?', [kode], (err, res) => {
     if(err){
       result(err,null)
       return;
