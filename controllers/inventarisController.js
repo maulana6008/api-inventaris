@@ -11,7 +11,8 @@ exports.create = (req, res) => {
     const invetaris1 = new Inventaris({
         kode: req.body.kode,
         name: req.body.name,
-        qr_code: req.body.qr_code
+        qr_code: req.body.qr_code,
+        type: req.body.type
     })
     
     Inventaris.create(invetaris1, (err, data) => {

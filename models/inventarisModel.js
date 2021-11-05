@@ -4,7 +4,8 @@ const dbConfig = require('../config/db-config')
 const Inventaris = function(inventaris) {
     this.kode = inventaris.kode,
     this.name = inventaris.name,
-    this.qr_code = inventaris.qr_code
+    this.qr_code = inventaris.qr_code,
+    this.type = inventaris.type
 }
 
 // insert
@@ -49,8 +50,8 @@ Inventaris.getAll = (result) => {
 
 Inventaris.updateById = (id, inventarisReq, result) => {
   dbConfig.query(
-    "UPDATE inventaris SET kode = ?, name = ?, qr_code = ? WHERE id = ?", 
-    [inventarisReq.kode, inventarisReq.name, inventarisReq.qr_code, id], 
+    "UPDATE inventaris SET kode = ?, name = ?, qr_code = ?, type = ? WHERE id = ?", 
+    [inventarisReq.kode, inventarisReq.name, inventarisReq.qr_code,inventarisReq.type, id], 
     (err, res) => {
       if(err){
         result(err, null)
