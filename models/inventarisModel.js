@@ -4,7 +4,6 @@ const dbConfig = require('../config/db-config')
 const Inventaris = function(inventaris) {
     this.kode = inventaris.kode,
     this.name = inventaris.name,
-    this.qr_code = inventaris.qr_code,
     this.type = inventaris.type
 }
 
@@ -50,8 +49,8 @@ Inventaris.getAll = (result) => {
 
 Inventaris.updateById = (id, inventarisReq, result) => {
   dbConfig.query(
-    "UPDATE inventaris SET kode = ?, name = ?, qr_code = ?, type = ? WHERE id = ?", 
-    [inventarisReq.kode, inventarisReq.name, inventarisReq.qr_code,inventarisReq.type, id], 
+    "UPDATE inventaris SET kode = ?, name = ? type = ? WHERE id = ?", 
+    [inventarisReq.kode, inventarisReq.name,inventarisReq.type, id], 
     (err, res) => {
       if(err){
         result(err, null)
@@ -86,5 +85,20 @@ Inventaris.removeById = (id,result) => {
   })
 }
 
+Inventaris.selectType = (type, result) => {
+  dbConfig.query('SELECT * FROM inventaris WHERE type = ?', [type], (err, res) => {
+    if(err){
+      result(err,null)
+      return;
+    }
+    if (res.affectedRows == 0) {
+      // not found inventaris with the id
+      result({ kind: "not_found" }, null);
+      return;
+    }
+
+    result(null, res)
+  })
+}
 
 module.exports = Inventaris

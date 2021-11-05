@@ -11,7 +11,6 @@ exports.create = (req, res) => {
     const invetaris1 = new Inventaris({
         kode: req.body.kode,
         name: req.body.name,
-        qr_code: req.body.qr_code,
         type: req.body.type
     })
     
@@ -96,4 +95,16 @@ exports.delete = (req, res) => {
         } else res.json({ message: `inventaris was deleted successfully!` })
     })
 
+}
+
+exports.invenType = (req, res) => {
+    let type = req.params.type
+    Inventaris.selectType(type, (err,data) => {
+        if(err)
+            res.send({
+                message:err
+            })
+        else
+            res.json(data)
+    })
 }
