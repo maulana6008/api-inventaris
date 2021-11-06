@@ -34,13 +34,14 @@ Peminjam.getAll = (result) => {
 }
 
 Peminjam.findById = (id, result) => {
-    dbConfig.query(`SELECT * FROM peminjam WHERE id = ${id}`, (err, res) => {
+    dbConfig.query("SELECT * FROM peminjam WHERE id = ?",[id], (err, res) => {
         if(err){
             result(err, null)
             return
         }
         if(res.length){
             result(null, res[0])
+            return
         }
         result({kind: 'not_found'},null)
     })
