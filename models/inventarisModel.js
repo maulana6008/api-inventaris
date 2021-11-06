@@ -49,8 +49,8 @@ Inventaris.getAll = (result) => {
 
 Inventaris.updateById = (id, inventarisReq, result) => {
   dbConfig.query(
-    "UPDATE inventaris SET kode = ?, name = ? type = ? WHERE id = ?", 
-    [inventarisReq.kode, inventarisReq.name,inventarisReq.type, id], 
+    "UPDATE inventaris SET kode = ?, name = ?, type = ? WHERE id = ?", 
+    [inventarisReq.kode, inventarisReq.name, inventarisReq.type, id], 
     (err, res) => {
       if(err){
         result(err, null)
